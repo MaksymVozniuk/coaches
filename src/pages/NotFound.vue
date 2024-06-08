@@ -1,5 +1,4 @@
-<script></script>
+<script setup></script>
 
-<template></template>
-
+<template>Page Not Found</template>
 <style scoped></style>
