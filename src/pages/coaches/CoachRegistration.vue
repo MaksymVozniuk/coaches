@@ -1,5 +1,7 @@
-<script setup></script>
+<script></script>
 
-<template></template>
+<template>
+  <h2>Register as Coach</h2>
+</template>
 
 <style scoped></style>
