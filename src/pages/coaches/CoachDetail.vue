@@ -1,4 +1,35 @@
-<script></script>
+<script>
+export default {
+  props: ['id'],
+  data() {
+    return {
+      selectedCoach: null,
+    };
+  },
+  created() {
+    this.selectedCoach = this.$store.getters['coaches/coaches'].find(
+      (coach) => coach.id === this.id
+    );
+  },
+  computed: {
+    fullName() {
+      return this.selectedCoach.firstName + ' ' + this.selectedCoach.lastName;
+    },
+    areas() {
+      return this.selectedCoach.areas;
+    },
+    rate() {
+      return this.selectedCoach.hourlyRate;
+    },
+    description() {
+      return this.selectedCoach.description;
+    },
+    contactLink() {
+      return this.$route.path + '/' + this.id + '/contact';
+    },
+  },
+};
+</script>
 
 <template>
   <section>
