@@ -44,7 +44,7 @@ export default {
         this.description.isValid = false;
         this.formIsValid = false;
       }
-      if (this.rate.val === null) {
+      if (!this.rate.val || this.rate.val < 0) {
         this.rate.isValid = false;
         this.formIsValid = false;
       }
@@ -53,12 +53,13 @@ export default {
         this.formIsValid = false;
       }
     },
-
     submitForm() {
       this.validateForm();
+
       if (!this.formIsValid) {
         return;
       }
+
       const formData = {
         first: this.firstName.val,
         last: this.lastName.val,
@@ -83,7 +84,7 @@ export default {
         v-model.trim="firstName.val"
         @blur="clearValidity('firstName')"
       />
-      <p v-if="!firstName.isValid">First name must not be empty</p>
+      <p v-if="!firstName.isValid">Firstname must not be empty.</p>
     </div>
     <div class="form-control" :class="{ invalid: !lastName.isValid }">
       <label for="lastname">Lastname</label>
@@ -93,7 +94,7 @@ export default {
         v-model.trim="lastName.val"
         @blur="clearValidity('lastName')"
       />
-      <p v-if="!lastName.isValid">Last name must not be empty</p>
+      <p v-if="!lastName.isValid">Lastname must not be empty.</p>
     </div>
     <div class="form-control" :class="{ invalid: !description.isValid }">
       <label for="description">Description</label>
@@ -103,7 +104,7 @@ export default {
         v-model.trim="description.val"
         @blur="clearValidity('description')"
       ></textarea>
-      <p v-if="!description.isValid">Description must not be empty</p>
+      <p v-if="!description.isValid">Description must not be empty.</p>
     </div>
     <div class="form-control" :class="{ invalid: !rate.isValid }">
       <label for="rate">Hourly Rate</label>
@@ -113,7 +114,7 @@ export default {
         v-model.number="rate.val"
         @blur="clearValidity('rate')"
       />
-      <p v-if="!rate.isValid">Rate must not be empty</p>
+      <p v-if="!rate.isValid">Rate must be greater than 0.</p>
     </div>
     <div class="form-control" :class="{ invalid: !areas.isValid }">
       <h3>Areas of Expertise</h3>
@@ -146,10 +147,10 @@ export default {
           @blur="clearValidity('areas')"
         />
         <label for="career">Career Advisory</label>
-        <p v-if="!areas.isValid">At least one expertise must be selected</p>
       </div>
+      <p v-if="!areas.isValid">At least one expertise must be selected.</p>
     </div>
-    <p v-if="!formIsValid">Please fix the above errors and submit again</p>
+    <p v-if="!formIsValid">Please fix the above errors and submit again.</p>
     <base-button>Register</base-button>
   </form>
 </template>
