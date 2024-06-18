@@ -6,10 +6,10 @@ export default {
       return this.firstName + ' ' + this.lastName;
     },
     coachContactLink() {
-      return this.$route.path + '/' + this.id + '/contacts';
+      return this.$route.path + '/' + this.id + '/contact'; // /coaches/c1/contact
     },
     coachDetailsLink() {
-      return this.$route.path + '/' + this.id;
+      return this.$route.path + '/' + this.id; // /coaches/c1
     },
   },
 };
@@ -28,7 +28,7 @@ export default {
       ></base-badge>
     </div>
     <div class="actions">
-      <base-button link :to="coachContactLink" mode="outline"
+      <base-button mode="outline" link :to="coachContactLink"
         >Contact</base-button
       >
       <base-button link :to="coachDetailsLink">View Details</base-button>
