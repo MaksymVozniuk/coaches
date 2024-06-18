@@ -1,8 +1,8 @@
 <script>
 export default {
+  emits: ['change-filter'],
   data() {
     return {
-      emits: ['change-filters'],
       filters: {
         frontend: true,
         backend: true,
@@ -19,7 +19,7 @@ export default {
         [inputId]: isActive,
       };
       this.filters = updatedFilters;
-      this.$emit('change-filters', updatedFilters);
+      this.$emit('change-filter', updatedFilters);
     },
   },
 };
