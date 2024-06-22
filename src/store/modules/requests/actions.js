@@ -23,18 +23,22 @@ export default {
 
     newRequest.id = responseData.name;
     newRequest.coachId = payload.coachId;
+
     context.commit('addRequest', newRequest);
   },
+
   async fetchRequests(context) {
     const coachId = context.rootGetters.userId;
+    const token = context.rootGetters.token;
     const response = await new Promise((resolve) => {
       setTimeout(() => {
         resolve(
           fetch(
-            `https://vue-http-cringe-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachId}.json`
+            `https://vue-http-cringe-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachId}.json?auth=` +
+              token
           )
         );
-      }, 500);
+      }, 50);
     });
     const responseData = await response.json();
 
