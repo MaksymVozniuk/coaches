@@ -1,4 +1,18 @@
-<script></script>
+<script>
+export default {
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated;
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout');
+      this.$router.replace('/coaches');
+    },
+  },
+};
+</script>
 
 <template>
   <header>
@@ -6,7 +20,17 @@
       <h1><router-link to="/">Find a coach</router-link></h1>
       <ul>
         <li><router-link to="/coaches">All Coaches</router-link></li>
-        <li><router-link to="/requests">Requests</router-link></li>
+        <li v-if="isLoggedIn">
+          <router-link to="/requests">Requests</router-link>
+        </li>
+        <li v-else>
+          <router-link link to="/auth">Login / Register</router-link>
+        </li>
+        <li>
+          <base-button v-if="isLoggedIn" mode="logout" @click="logout">
+            Logout
+          </base-button>
+        </li>
       </ul>
     </nav>
   </header>
